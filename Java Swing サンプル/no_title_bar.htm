@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<head>
+
+<meta http-equiv="Content-Style-Type" content="text/css; charset=Shift-JIS">
+<link rel="stylesheet" href="java.css" type="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta content="Java,Swing,Tips,No Title Bar" name="keywords">
+
+<title>Java Swing サンプル集</title>
+</head>
+
+<body>
+<table class="table_1" align="center" summary="Swing">
+<tbody>
+<tr>
+<td class="table_1">
+<table summary="outline">
+<tbody>
+<tr>
+<td class="title_site">
+Java Swing サンプル集
+</td>
+</tr>
+<tr>
+<td valign="top" align="center">
+<hr>
+</td>
+</tr>
+<tr>
+<td>
+<a href="index.html">Top Page</a>                               
+<br>                               
+</td>                               
+</tr>                               
+<tr>                               
+<td class="title_page">                               
+<img border="0" src="images/glass_icon2.gif" width="16" height="16" alt="*">                               
+ タイトルバーの非表示<br>                              
+<img border="0" src="images/ber91.gif" class="title_page_line" alt="-" width="432" height="15">                              
+</td>                              
+</tr>                              
+<tr>                              
+<td class="title_section">                              
+<div class="space">                              
+<img src="images/threesquare_icon002.gif" width="12" height="10" alt="･">説明<br>                              
+                              
+<img src="images/ber005.gif" class="section_line" alt="-" width="150" height="5"> 
+</div>                              
+</td>                              
+</tr>                              
+<tr>                              
+<td>                              
+                              
+<table summary="description">                       
+<tbody>                              
+<tr>                              
+<td class="column_left">                              
+                              
+<p>                              
+タイトルバーを表示させないようにするためには、JFrame.setUndecorated()を使用します。<br>                       
+本来の意味は装飾の有効化と無効化を切り替えるということであり、パラメータをtrueにすると装飾が無効化されます。                       
+</p>                               
+<p>                      
+この場合の装飾とはフレーム（枠）とタイトルバーを指し、タイトルバー以外にも枠も消えています。                      
+</p>             
+<div class="space_both">             
+<img border="0" src="app/images/no_title_bar.jpg" width="300" height="200" alt="app">             
+</div>             
+</td>                               
+<td class="column_right">                               
+                               
+<!-- ///// Amazon ///// -->                               
+                               
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?t=bb1985-22&o=9&p=10&l=st1&mode=books-jp&search=Java%20Swing%20GUI&fc1=000000&lt1=&lc1=3366FF&bg1=FFFFFF&f=ifr" marginwidth="0" marginheight="0" width="120" height="450" border="0" frameborder="0" style="border:none;" scrolling="no"></iframe>                               
+                               
+<!-- ///// Amazon ///// -->                               
+                               
+</td>                               
+</tr>                               
+</tbody>                               
+</table>                               
+</td>                               
+</tr>            
+<tr>                               
+<td>                               
+<div class="space">                              
+サンプルソース : <a href="src/src_no_title_bar.zip">src_no_title_bar.zip</a>                               
+</div>                               
+<div class="space_both">                               
+サンプルアプリ :<a href="app/sample_no_title_bar.jar"> sample_no_title_bar.jar</a>                               
+</div>                               
+</td>                               
+</tr>                                               
+<tr>                                
+<td class="title_section">                                
+<div class="space">                                
+<img border="0" src="images/threesquare_icon002.gif" width="12" height="10" alt="･">コード例<br>                                
+                                
+<img src="images/ber005.gif" class="section_line" alt="-" width="150" height="5"> 
+</div>                                
+</td>                                
+</tr>                                
+<tr>                                
+<td>                                
+<div class="space_both">                                
+<table class="table_code" summary="code">                                
+  <tbody>                                
+  <tr>                                
+    <td>                                
+    <pre>   jFrame.setUndecorated(true);</pre>                                
+    </td>                                
+  </tr>                                
+  </tbody>                                
+</table>                  
+</div>                              
+</td>                                
+</tr>                                
+<tr>                                
+<td class="title_section">                                
+<div class="space">                                
+<img src="images/threesquare_icon002.gif" width="12" height="10" alt="･">画面中央に表示<br>                                
+                                
+<img src="images/ber005.gif" class="section_line" alt="-" width="150" height="5"> 
+</div>                                
+</td>                                
+</tr>                                
+<tr>                                
+<td>                                
+<div class="space_both">                                
+画面中央に表示させるためには、JFrame.setLocationRelativeTo()を使用します。<br>                      
+パラメータにはJFrame表示させるのに基準となるコンポーネントを指定します。<br>                      
+これをnullとするとJFrameは画面中央に表示されます。                      
+</div>                                
+<table class="table_code" summary="code">                                
+  <tbody>                                
+  <tr>                                
+    <td>                                
+    <pre>    jFrame.setLocationRelativeTo(null);</pre>                                
+    </td>                                
+  </tr>                                
+  </tbody>                                
+</table>                      
+<div class="space_both">                      
+タイトルバーの非表示、画面中央への表示ともコード例はJFrameですが、JDialogにも使用可。<br>                      
+オープニングダイアログに使用すると良いかも。                 
+</div>                 
+<br>    
+<!-- Java Swing Tips Sample GUI サンプル -->                         
+<!-- ///// Google ///// -->                                
+<script type="text/javascript"><!--         
+google_ad_client = "pub-4667966388895726";         
+/* 728x90, 作成済み 09/01/26 */         
+google_ad_slot = "1570626113";         
+google_ad_width = 728;         
+google_ad_height = 90;         
+google_language = 'ja';         
+//-->         
+</script>         
+<script type="text/javascript"         
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">         
+</script>         
+<!-- ///// Google ///// -->                                
+</td>                                
+</tr>                        
+</tbody>                          
+</table>          
+</td>          
+</tr>                               
+</tbody>                          
+</table>          
+</body>                               
+                               
+</html>                               

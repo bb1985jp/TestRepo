@@ -1,0 +1,303 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<head>
+
+<meta http-equiv="Content-Style-Type" content="text/css; charset=Shift-JIS">
+<link rel="stylesheet" href="java.css" type="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta content="Java,Swing,Tips,launch4j" name="keywords">
+
+<title>Java Swing サンプル集</title>
+</head>
+
+<body>
+<table class="table_1" align="center" summary="Swing,jar exe">
+<tbody>
+<tr>
+<td class="table_1">
+<table summary="outline">
+<tbody>
+<tr>
+<td class="title_site">
+Java Swing サンプル集
+</td>
+</tr>
+<tr>
+<td valign="top" align="center">
+<hr>
+</td>
+</tr>
+<tr>
+<td>
+<a href="index.html">Top Page</a>                                                                                                                                                                          
+<br>                                                                                                                                                                          
+</td>                                                                                                                                                                          
+</tr>                                                                                                                                                                          
+<tr>                                                                                                                                                                          
+<td class="title_page">                                                                                                                                                                          
+<img border="0" src="images/glass_icon2.gif" width="16" height="16" alt="*">                                                                                                                                                                          
+<code><b>.jar</b></code>を<code><b>.exe</b></code>へ変換（Launch4j）<br>                                                                                                                                                                          
+<img border="0" src="images/ber91.gif" class="title_page_line" alt="-" width="432" height="15">                                                                                                                                                                          
+</td>                                                                                                                                                                          
+</tr>                                                                                                                                                                          
+<tr>                                                                                                                                                                          
+<td class="title_section">                                                                                                                                                                          
+<div class="space">                                                                                                                                                                          
+<img border="0" src="images/threesquare_icon002.gif" width="12" height="10" alt="･">説明<br>                                                                                                                                                                          
+                                                                                                                                                                          
+<img src="images/ber005.gif" class="section_line" alt="-" width="150" height="5">                
+</div>                                                                                                                                                                          
+</td>                                                                                                                                                                          
+</tr>                                                                                                                                                                          
+<tr>                                                                                                                                                                          
+<td>                                                                                                                                                                          
+<table summary="description">                                                                                                                                                                          
+<tbody>                                                                                                                                                                          
+<tr>                                                                                                                                                                          
+<td class="column_left">                                                                                                                                                                          
+<code>.jar</code>ファイルを<code>.exe</code>へ変換するためのツールはいくつか存在しますが、launch4jが最も一般的のようです。<br>                                                                                        
+原理としては、<code>.jar</code>をバイナリベースまで落として実行ファイルを生成するのではなく、あくまでも<code>exe</code>ファイルでラップするイメージ。<br>                                                                                        
+つまり、<code>.exe</code>となってもjavaがインストールされていないと動作しません。<br>                                                                                        
+<p>                                                                                                                                                                        
+ただしJREが存在しない（または必要なバージョンよりも低い）環境で実行した場合は、JREのダウンロードを促すことが出来ます。<br>                                                                                       
+さらに、<code>.exe</code>ファイルにアイコンを設定することも出来ます。<br>                                                                                       
+                                                                                 
+                                                                                                                                                                       
+</td>                                                                                                                                                                       
+<td class="column_right">                                                                                                                                                                       
+                                                                                                                                                                       
+<!-- ///// Amazon ///// -->                                                                                                                                                                       
+                                                                                                                                                                       
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?t=bb1985-22&o=9&p=10&l=st1&mode=books-jp&search=Java%20Swing%20GUI&fc1=000000&lt1=&lc1=3366FF&bg1=FFFFFF&f=ifr" marginwidth="0" marginheight="0" width="120" height="450" border="0" frameborder="0" style="border:none;" scrolling="no"></iframe>                                                                                                                                                                       
+<p> 
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?t=bb1985-22&o=9&p=8&l=st1&mode=electronics-jp&search=HDD%20%E5%A4%96%E4%BB%98%E3%81%91&fc1=000000&lt1=&lc1=3366FF&bg1=FFFFFF&f=ifr" marginwidth="0" marginheight="0" width="120" height="240" border="0" frameborder="0" style="border:none;" scrolling="no"></iframe> 
+</p>                                                                                                                                                                       
+<!-- ///// Amazon ///// -->                                                                                                                                                                       
+                                                                                                                                                                       
+</td>                                                                                                                                                                       
+</tr>                                                                                                                                                                       
+</tbody>                                                                                                                                                                       
+</table>                                                                                                                                                                       
+</td>                                                                                                                                                                       
+</tr>                                                                                                                                                                       
+<tr>                                                                                                                                                                    
+<td class="title_section">                                                                                                                                                                    
+<div class="space">                                                                                                                                                                    
+<img border="0" src="images/threesquare_icon002.gif" width="12" height="10" alt="･">launch4jインストール方法<br>                                                                                                                                                                    
+                                                                                                                                                                    
+<img src="images/ber005.gif" class="section_line" alt="-" width="150" height="5">                
+</div>                                                                                     
+</td>                                                                                     
+</tr>                                                                                     
+<tr>                                                                                                                                                    
+<td>                                                                                                                                                    
+<a href="http://launch4j.sourceforge.net/">                                                                                                                                                   
+http://launch4j.sourceforge.net/</a>                                                                                                                                                   
+<p>                                                                                 
+の左側のDownloadをクリック。                                                                                 
+</p>                                                                                 
+<p>                                                                                 
+実行環境用のインストールファイル（Windows環境ではlaunch4j-X.X.X-win32.exe ）をクリックするとダウンロードが始まります。                                                                                   
+</p>                                                                                   
+<p>                                                                                   
+ダウンロードしたファイルを実行するとインストールされます。                                                                                   
+</p>                                                                                                                                                  
+</td>                                                                                                                                                     
+</tr>                                                                                   
+<tr>                                                                                                                                                                     
+<td class="title_section">                                                                                                                                                                     
+<div class="space">                                                                                                                                                                     
+<img border="0" src="images/threesquare_icon002.gif" width="12" height="10" alt="･">launch4j使用方法<br>                                                                                                                                                                     
+                                                                                                                                                                     
+<img src="images/ber005.gif" class="section_line" alt="-" width="150" height="5">                
+</div>                                                                                      
+</td>                                                                                      
+</tr>                                                                                      
+<tr>                                                                                                                                                     
+<td>                                                                                                                                                     
+使用方法としては、主にGUIから実行する方法とコマンドラインから実行する方法の２通りがありますがAntからも実行することが出来ます。                                                                              
+</td>                                                                                                                                                     
+</tr>                                                                                   
+<tr>                                                                                                                                                                         
+<td class="title_section">                                                                                                                                                                         
+<div class="space">                                                                                                                                                                         
+<img border="0" src="images/threesquare_icon002.gif" width="12" height="10" alt="･">GUIからの実行<br>                                                                                                                                                                          
+                                                                                                                                                                          
+<img src="images/ber008.gif" class="section_sub_line" alt="-" width="150" height="5">              
+</div>                                                                                                                                                                          
+</td>                                                                                                                                                                          
+</tr>                                                                                                                                                                          
+<tr>                                                                                                                                                     
+<td>         
+<div class="space">           
+<img src="app/images/launch4j_start.PNG" alt="Launch4j GUI">        
+</div>        
+<ol>                                                                            
+<li><div class="space">インストールされたlaunch4jを実行するとGUIが起動する。</div></li>                                                                                                                                                     
+<li><div class="space">                                    
+    以下を最低限設定する。                                                                       
+    </div>                                                                     
+    <div class="space">                                                                     
+    <table class="three_column" summary="tab">                                                                            
+    <tbody>                                                                            
+    <tr>                                                                         
+    <td rowspan="3" class="three_column">                                                                         
+    <code><b>Basic</b></code>タブ                                                                         
+    </td>                                                                         
+    <td class="three_column">                                                                         
+    <code><b>Output file</b></code>                                                                         
+    </td>                                                                         
+    <td class="three_column">                                                                         
+    パスを含む出力ファイル名                                                                         
+    </td>                                                                         
+    </tr>                                                                           
+    <tr>                                                                         
+    <td class="three_column">                                                                         
+    <code><b>Jar</b></code>                                                                         
+    </td>                                                                         
+    <td class="three_column">                                                                         
+    元となるjarのパスを含むファイル名                                                                         
+    </td>                                                                         
+    </tr>                                                                           
+    <tr>                                                                         
+    <td class="three_column">                                                                         
+    <code><b>Java Download URL</b></code>                                                                         
+    </td>                                                                         
+    <td class="three_column">                                                                         
+    実行環境にJavaが無い場合のJREダウンロード先URL <br>                                                          
+    ※デフォルトで入力されている。                                                                        
+    </td>                                                                         
+    </tr>                                        
+    <tr>                                                                  
+    <td class="three_column">                                                                         
+    <code><b>Header</b></code>タブ                                        
+    </td>                                                                                                          
+    <td class="three_column">                                                                         
+    <code><b>Header type</b></code>                                                                         
+    </td>                                                                         
+    <td class="three_column">                                                                         
+    GUIとConsoleのどちらかにチェック                                                                         
+    </td>                                                                                                          
+    </tr>                                        
+    <tr>                                                                         
+    <td rowspan="2" class="three_column">                                                                         
+    <code><b>JRE</b></code>タブ                                                                         
+    </td>                                                                         
+    <td class="three_column">                                                                         
+    <code><b>Emb. JRE path</b></code>                                                                         
+    </td>                                                                         
+    <td class="three_column">                                                                         
+    JREがインストールされているパス。基本的には"path"と入力すれば良い                                                                        
+    </td>                                                                                                          
+    </tr>                                        
+    <tr>                                                                         
+    <td class="three_column">                                                                         
+    <code><b>Min JRE version</b></code>                                                                         
+    </td>                                                                         
+    <td class="three_column">                                                                         
+    アプリが必要とする最低限のJREのバージョン<br>                                                          
+    ※実行環境にインストールされているJREがこれより低いバージョンであれば.exe実行時、JREのインストールが促される。                                                                        
+    </td>                                                                         
+    </tr>                                                                       
+    </tbody>                                                                            
+    </table>                                                             
+    </div>                                                                       
+</li>                                    
+<li><div class="space">                                    
+必要に応じて上記以外を設定                                    
+<p>                                    
+（アイコンを指定する場合）                                    
+</p>                                    
+<code>Basic</code>タブ<code>Icon</code>にアイコンファイルのパスを含むファイル名を入力。                                    
+</div>                                    
+</li>                                    
+<li><div class="space">                                    
+<code>Build wrapper</code>（ネジの形）を実行                                    
+</div>                                    
+</ol>                                                                                                                                                     
+<div class="space">                                    
+設定を保存する場合は、<code>Save Configuration</code>（フロッピーの形）を実行するとxmlの形式でconfigファイルが出力されます。                                    
+</div>                                    
+</td>                                                                                                                                                     
+</tr>                                                                            
+<tr>                                                                                                                                                                     
+<td class="title_section">                                                                                                                                                                     
+<div class="space">                                                                                                                                                                     
+<img border="0" src="images/threesquare_icon002.gif" width="12" height="10" alt="･">Antから実行する方法<br>                                                                                                                                                                     
+                                                                                                                                                                     
+<img border="0" src="images/ber008.gif" class="section_sub_line" alt="-" width="150" height="5">              
+</div>                                                                                                                                                                     
+</td>                                                                                                                                                                     
+</tr>                                                                                                                                                                     
+<tr>                                                                                                                                                                     
+<td>                                                                                                                                                                     
+<ol>                                   
+<li><div class="space">                                    
+aunch4jの設定ファイル（<code>config.xml</code>）を任意の場所に格納する。                                   
+</div>                                   
+</li>                                   
+<li><div class="space_both">                                    
+build.xmlに以下を追加                                   
+</div>                                   
+                                                                                                                                                           
+<table class="table_code" summary="code">                                                                                                                                                                     
+  <tbody>                                                                                                                                                                     
+  <tr>                                                                                                                                                                     
+    <td>                                                                                                                                                                     
+    <pre>    &lt;property name=&quot;launch4j.dir&quot; location=&quot;launch4のディレクトリ&quot; /&gt;
+    &lt;taskdef name=&quot;launch4j&quot;
+        classname=&quot;net.sf.launch4j.ant.Launch4jTask&quot;
+        classpath=&quot;${launch4j.dir}/launch4j.jar
+            :${launch4j.dir}/lib/xstream.jar&quot; /&gt;
+
+    &lt;target name=&quot;exe&quot;&gt;
+        &lt;launch4j configFile=&quot;./config.xml&quot;/&gt;
+    &lt;/target&gt;</pre>                                                                                                                                                                     
+    </td>                                                                                                                                                                     
+  </tr>                                                                                                                                                                     
+  </tbody>                                                                                                                                                                     
+</table>                                                                                                                             
+</li>                                   
+</ol>                                   
+</td>                                                                                                                                                                     
+</tr>                                                                                                                                                          
+<tr>                                                                                                                                                                        
+<td>                                                                                                                                                                        
+<div class="space_both">                                                                                                                                                                        
+<img border="0" src="app/images/jar_to_exe.jpg" width="300" height="200">                                                                                                                                                                      
+</div>                                                                                                                                                                      
+<div class="space">                                                                                                                                                                      
+サンプル環境 : <a href="src/sample_jar_to_exe.zip">sample_jar_to_exe.zip</a>                                                                                                                                                                        
+</div>                                                                                                                                                                        
+<div class="space_both">                                                                                                                                                                        
+サンプルアプリ : <a href="app/sample_jar_to_exe.exe">sample_jar_to_exe.exe</a>                                                                                                                                                                        
+</div>                                                                                                                                                                        
+</td>                                                                                                                                                                        
+</tr>                                                                                                                                                                                                                                                                                                        
+</tbody>                                                                                                                                                                   
+</table>                                                                                                                                                                        
+<br>                    
+<!-- Java Swing Tips Sample GUI サンプル -->                                        
+<!-- ///// Google ///// -->                                               
+<script type="text/javascript"><!--                        
+google_ad_client = "pub-4667966388895726";                        
+/* 728x90, 作成済み 09/01/26 */                        
+google_ad_slot = "1570626113";                        
+google_ad_width = 728;                        
+google_ad_height = 90;                        
+google_language = 'ja';                        
+//-->                        
+</script>                        
+<script type="text/javascript"                        
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">                        
+</script>                        
+                    
+</td>                                                         
+</tr>                                            
+</tbody>                    
+</table>                                                  
+</body>                                                                                                                                                                        
+                                                                                                                                                                        
+</html>                                                                                                                                                                        

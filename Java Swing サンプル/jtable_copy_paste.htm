@@ -1,0 +1,628 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<head>
+
+<meta http-equiv="Content-Style-Type" content="text/css; charset=Shift-JIS">
+<link rel="stylesheet" href="java.css" type="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta content="Java,Swing,Tips,Copy and Paste" name="keywords">
+
+<title>Java Swing サンプル集</title>
+</head>
+
+<body>
+<table class="table_1" align="center" summary="Swing">
+<tbody>
+<tr>
+<td class="table_1">
+<table summary="outline">
+<tbody>
+<tr>
+<td class="title_site">
+Java Swing サンプル集
+</td>
+</tr>
+<tr>
+<td valign="top" align="center">
+<hr>
+</td>
+</tr>
+<tr>
+<td>
+<a href="index.html">Top Page</a>                                                                                            
+<br>                    
+</td>                
+</tr>                
+<tr>                
+<td class="title_page">                                                                                            
+<img border="0" src="images/glass_icon2.gif" width="16" height="16" alt="*">                                                                                            
+JTableでのCut/Copy &amp; Paste<br>                                                                                            
+<img border="0" src="images/ber91.gif" class="title_page_line" alt="-" width="432" height="15">                                                                                            
+</td>                                                                                            
+</tr>                                                                                            
+<tr>                                                                                            
+<td class="title_section">                                                                                            
+<div class="space">                                                                                            
+<img border="0" src="images/threesquare_icon002.gif" width="12" height="10" alt="･">説明<br>                                                                                            
+                                                                                            
+<img src="images/ber005.gif" class="section_line" alt="-" width="150" height="5">      
+</div>                                                                                            
+</td>                                                                                            
+</tr>                                                                                            
+<tr>                                                                                            
+<td>                                                                                            
+                                                                                            
+<table summary="description">                                                                                            
+<tbody>                                                                                            
+<tr>                                                                                            
+<td class="column_left">                                                                                            
+                                                                                            
+<p>デフォルトのままだとJTable上ではコピー＆ペーストを行うことが出来ません。<br>                                                                                           
+ここでは、ショートカットキーと右クリックで実現する方法を示します。                                                                                           
+</p>                                                                                           
+                                                                                           
+大ざっぱに言うと、以下３種類の設定を行うことにより実現出来ます。                                                                                          
+<ol>                                                                                           
+<li><a href="#section1">キーボードショートカット設定</a></li>                                                                               
+<li><a href="#section2">右クリックメニュー設定</a></li>                                                                                           
+<li><a href="#section3">Actionクラス内での処理を記述</a></li>                                                                                           
+</ol>                                                                                           
+この中で肝は <a href="#section3">3.Actionクラス内での処理</a>となります。                                                                                 
+                                                                                          
+</td>                                                                                          
+<td class="column_right">                                                                                          
+                                                                                          
+<!-- ///// Amazon ///// -->                                                                                          
+                                                                                          
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?t=bb1985-22&o=9&p=10&l=st1&mode=books-jp&search=Java%20Swing%20GUI&fc1=000000&lt1=&lc1=3366FF&bg1=FFFFFF&f=ifr" marginwidth="0" marginheight="0" width="120" height="450" border="0" frameborder="0" style="border:none;" scrolling="no"></iframe>                                                                                          
+                                                                                          
+<!-- ///// Amazon ///// -->                                                                                          
+                                                                                          
+</td>                                                                                          
+</tr>                                                                                          
+</tbody>                                                                                          
+</table>                                                                                          
+</td>                                                                                          
+</tr>                                                                                          
+<tr>                                                                                          
+<td>                                                                                          
+<div class="space_both">                                                                                          
+<img border="0" src="app/images/jtable_copy_paste.jpg" alt="app" width="354" height="200">                                                                                         
+</div>                                                                                         
+<div class="space">                                                                                         
+サンプルソース : <a href="src/src_jtable_copy_paste.zip">src_jtable_copy_paste.zip</a>                                                                                           
+</div>                                                                                           
+<div class="space_both">                                                                                           
+サンプルアプリ : <a href="app/sample_jtable_copy_paste.jar">sample_jtable_copy_paste.jar</a>                                                                                           
+</div>                                                                                           
+</td>                                                                                           
+</tr>                                                                                           
+<tr>                                                                                           
+<td class="title_section">                                                                                           
+<div class="space">                                                                                           
+<img border="0" src="images/threesquare_icon002.gif" width="12" height="10" alt="･"><a name="section1">１．キーボードショートカット設定</a><br>                                                                                            
+                                                                                            
+<img border="0" src="images/ber008.gif" class="section_sub_line" alt="-" width="150" height="5">    
+</div>                                                                                            
+</td>                                                                                            
+</tr>                                                                                            
+<tr>                                                                       
+<td>                                                                       
+<p>                                                                       
+以下の手順により、キーボードショートカットを設定します。<br>                                                                       
+※キーボードショートカットを使用しない場合は省略可。                                                                       
+</p>                                                                       
+<ol>                                                                       
+<li><div class="space">AbstractActionを継承したクラスをショートカット分生成する。</div></li>                                                                       
+<li><div class="space">テーブルのInputMapに対してショートカットキーとそれを表す文字列（＝オブジェクトであれば何でも良い）のバインディングを追加。</div></li>                                                                           
+<li><div class="space">テーブルのActionMapに対して1.2で追加した文字列（オブジェクト）と対応する上記1.で生成したクラスのバインディングを追加。                                                                           
+<pre>KeyStroke CUT
+    = KeyStroke.getKeyStroke(KeyEvent.VK_X,ActionEvent.CTRL_MASK,false);
+table.getInputMap().put(CUT, &quot;Cut&quot;);
+table.getActionMap().put(&quot;Cut&quot;, Actionクラス);</pre>                                                                       
+上記例ではCtrl+Xで３行目で指定しているActionクラスが呼び出される。</div></li>                                                                       
+</ol>                                                                       
+</td>                                                                       
+</tr>                                                                       
+<tr>                                                                                           
+<td class="title_section">                                                                                           
+<div class="space">                                                                                           
+<img border="0" src="images/threesquare_icon002.gif" width="12" height="10" alt="･"><a name="section2">２．右クリックメニュー設定</a>（<a href="right_click.htm">右クリックメニュー表示</a>と同様）<br>                                                                                           
+                                                                                           
+<img border="0" src="images/ber008.gif" class="section_sub_line" alt="-" width="150" height="5">    
+</div>                                                                                           
+</td>                                                                                           
+</tr>                                                                                           
+<tr>                                                                      
+<td>                                                                      
+<p>                                                                      
+以下の手順により、右クリックメニューを設定します。<br>                                                                     
+※右クリックメニューを使用しない場合は省略可。                                                                     
+</p>                                                                     
+<ol>                                                                     
+<li><div class="space">右クリック時に表示させるJMenuItemのインスタンスをメニュー数分生成する。<br>                                                                    
+このJMenuItemのパラメータが右クリック時に表示される文字列になる。</div></li>                                                                     
+<li><div class="space">上記の各メニューが選択された際の処理をActionListenerを実装したクラスに定義し、インスタンスをそれぞれ生成、JMenuItemに追加しておく。<br>                                                                
+メニュー選択時は、このクラス内のactionPerformed()イベントがコールされる。</div></li>                                                                         
+<li><div class="space">JMenuItemが貼り付くJPopupMenuのインスタンスを生成し、上から表示する順番でJMenuItemインスタンスをaddする。</div></li>                                                                    
+<li><div class="space">右クリックを表示させたいコンポーネントにマウスリスナーを追加し、マウス押下イベント発生時に上記JPopupMenuインスタンスを表示するように実装しておく。                                                                    
+<pre>JMenuItem jmenuitem1 = new JMenuItem(&quot;Cut    Ctrl+X&quot;);
+jmenuitem1.addActionListener(Actionリスナー);
+JPopupMenu jpopup.add(jmenuitem1);
+jTable.addMouseListener(new XXXMouseListener(jTable, jpopup));
+jFrame.add(jpopup);
+</pre>                                                                     
+  </div>                                                              
+</li>                                                                    
+</ol>                                                                   
+<p>                                                                   
+サンプルコードでは上記ショートカットキー用Actionクラスと右クリック用Actionリスナーは同一のクラスとしています。<br>                                                                   
+実行する内容は同じなので、不都合が無ければ同一クラスとした方が良いと思われます。                                                                   
+</p>                                                                    
+<p>                                                                   
+上記の実装方法では、ショートカットキー押下時、右クリック時ともにActionクラス内の</p>                                                                 
+<pre>void actionPerformed(ActionEvent e)</pre>                                                                   
+<p>                                   
+がコールされます。                                                                    
+</p>                                   
+<p>                                                                   
+右クリック時、どのJMenuItemが選択されたのかは、e.getSource()で判別可能。<br>                                                                   
+ショートカットキーについては判別が出来ないため、Actionクラス生成時に内部にショートカットキーを示す文字列（数値でも良い）を保持しておき、コールバック時にどの文字列を抱えているかで判別すると良いでしょう。</p>                                                                     
+</td>                                                                      
+</tr>                                                                      
+<tr>                                                                                          
+<td class="title_section">                                                                                          
+<div class="space">                                                                                          
+<img border="0" src="images/threesquare_icon002.gif" width="12" height="10" alt="･"><a name="section3">３．Actionクラス内での処理を記述</a><br>                                                                                          
+                                                                                          
+<img border="0" src="images/ber008.gif" class="section_sub_line" alt="-" width="150" height="5">    
+</div>                                                                                          
+</td>                                                                                          
+</tr>                                                                                          
+<tr>                                                                     
+<td>                                                                     
+<p>                                                                     
+以下の手順により、キーボードショートカットを設定します。<br>                                                                     
+※キーボードショートカットを使用しない場合は省略可。                                                                     
+</p>                                                                     
+<ol>                                                                     
+<li>Cut/Copy <p>                                
+CutとCopyはほとんど差異はありません。<br>                                                             
+違いは、元データを削除する（Cut）、残す（Copy）のみ。<br>                                                             
+そのため実体メソッドはCut/Copy共通で実現可能です。</p>                                                            
+<div class="space">                                                            
+基本的な構造としては、以下の通りです。                                                           
+<ol class="roman">                                                           
+<li><div class="space">選択されている範囲を左から右の方向に１セルずつ取得し、StringBufferにため込む。<br>                                                           
+この間、セルとセルの間に<code>'\t'</code>（タブ文字）を挟ませる。</div></li>                                                           
+<li><div class="space">行が変れば、<code>'\n'</code>（改行文字）をStringBufferに入れる。</div></li>                                                           
+<li><div class="space">上記要領で選択範囲のデータすべてをStringBufferにため込んだら、文字列としてクリップボードに転送する。</div>                                                           
+<pre>StringSelection ss = new StringSelection(buffer.toString());
+clipboard.setContents(ss, ss);</pre>                                                           
+</li>                                                           
+</ol>                                 
+</div>                             
+</li>                                                                   
+<li>Paste                                                           
+<p>                                                           
+クリップボード内のデータはセルとセルの間には<code>'\t'</code>、行が変わるごとに<code>'\n'</code>が埋め込まれた状態となっています。<br>                                                           
+これを単純にセル単位で設定していきます。                                                           
+</p>                                                           
+<p>                                                           
+この場合StringTokenizerを使用したいところですが、StringTokenizerを使用して行単位、セル単位で分割すると、未入力のセルをTokenとして切りだしてはくれません。<br>                                                           
+そのため、未入力のセルのデータを貼り付けると貼り付け先のセルは本来長さ0の文字列が設定されるべきですが、未入力のセルデータは飛ばされ次のセルのデータが設定されてしまいます。                                                           
+</p>                                                           
+<p>                                                           
+※String.split() を使用すればある程度は未入力のセルも認識可能だが、末尾に<code>'\t'</code>、<code>'\n'</code>が存在するとやはり無視されてしまいます。                                                             
+</p>                                                             
+<p>                                                             
+正しく未入力セルを認識するようにするためには、自前で<code>'\n'</code>、<code>'\t'</code>を検索し、行単位、セル単位の分割を行う方が良いでしょう。                                                             
+</p>                                                             
+<p>                                                             
+これにより、正しくセル単位でデータを取り出すことが出来ます。                                                             
+</p>                                                             
+<div class="space">                                                             
+コード例では、                                                            
+<ul>                                                             
+<li>コピー時に複数範囲を設定していて複写先がテーブルの端などではみ出る場合</li>                                                             
+<li>複写先として元データ以上の範囲が選択されている場合、等</li>                                                             
+</ul>                     
+</div>                                                            
+の処理も入れているため多少複雑に見えるますが、基本的にはただセル単位で分割されたデータをセル単位に設定しているだけです。                                                             
+</li>                                                                         
+</ol>                                                                     
+<div class="space">また、サンプルコードで注意すべき点は以下の２点です。                                                            
+<ul>                                                            
+<li>このコードは文字列にのみ適用可能であること。</li>                                                            
+<li>セル内に改行（<code>'\n'</code>）がある場合は正しく認識出来ない。</li>                                                            
+</ul>                                                            
+</div>                                                            
+※サンプルコードのActionクラスは汎用的に使用可能としたつもりですが、これらのケースが想定される場合はカスタマイズが必要となります。                                                            
+</td>                                                                    
+</tr>                                                                    
+<tr>                                                                                          
+<td class="title_section">                                                                                          
+<div class="space">                                                                                          
+<img border="0" src="images/threesquare_icon002.gif" width="12" height="10" alt="･">補足<br>                                                                                          
+                                                                                          
+<img border="0" src="images/ber008.gif" class="section_sub_line" alt="-" width="150" height="5">    
+</div>                                                                                          
+</td>                                                                                          
+</tr>                                                                                          
+<tr>                                                                     
+<td>                                                                     
+<p>                                                                     
+各セルデータが複数行入力されることが想定される場合、セル内でどのように改行されるかにより上記処理も多少修正が必要となります。                                                          
+</p>                                                          
+<div class="space">                                                          
+具体的には、                                                          
+<ol class="alpha">                                                                     
+<li>HTMLタグの&lt;br&gt;で実現させる。</li>                                                          
+<li>改行を<code>'\n'</code>や<code>"\r\n"</code>で実現させる。</li>                                                          
+</ol>                    
+</div>                                                          
+の２通りが主に想定される方法だと思います。                                                          
+<p>                                                          
+JTableの各セルはデフォルトではそれぞれJLabelを継承したのRendererが使用されています。<br>                                                          
+このため、デフォルトのRendererのままではHTMLタグの&lt;br&gt;を使用することにより改行を実現することになります。                                                          
+</p>                                                          
+<p>                                                          
+対して独自のJtextAreaを継承したRendererを設定すれば<code>'\n'</code>でも改行されます。                                                          
+</p>                                                          
+<p>                                                          
+もし b. のケースで実現させるとなると、上で説明した処理ではセル内での改行とセル自体の改行で区別がつかなくなってしまうため、実装には少々工夫が必要です。</p>                                                         
+                                                           
+</td>                                                                   
+</tr>                                                                   
+                                                          
+<tr>                                                                                       
+<td class="title_section">                                                                                       
+<div class="space">                                                                                       
+<img border="0" src="images/threesquare_icon002.gif" width="12" height="10" alt="･">コード例<br>                                                                                       
+                                                                                       
+<img src="images/ber005.gif" class="section_line" alt="-" width="150" height="5">      
+</div>                                                                                       
+</td>                                                                                       
+</tr>                                                                                       
+<tr>                                                                                       
+<td>                                                                                       
+<div class="space">＜メインクラス内＞                                                                                       
+<table class="table_code" summary="code">                                                                                       
+  <tbody>                                                                                       
+  <tr>                                                                                       
+    <td>                                                                                       
+    <pre>    private final static KeyStroke CUT
+        = KeyStroke.getKeyStroke(KeyEvent.VK_X,ActionEvent.CTRL_MASK,false);
+    
+    private final static KeyStroke COPY 
+        = KeyStroke.getKeyStroke(KeyEvent.VK_C,ActionEvent.CTRL_MASK,false);
+    
+    private final static KeyStroke PASTE 
+        = KeyStroke.getKeyStroke(KeyEvent.VK_V,ActionEvent.CTRL_MASK,false);
+
+    /**
+     * キーボードショートカットの登録を行います。
+     * 
+     * @param table キーボードショートカットを登録するテーブル
+     */
+    private void initializeKeyShortCut(JTable table) {
+
+        // キーイベント用アクション生成（ショートカットキー毎に別々に生成）
+        SampleActionListener actionCut = new SampleActionListener(table, &quot;Cut&quot;);
+        SampleActionListener actionCopy = new SampleActionListener(table, &quot;Copy&quot;);
+        SampleActionListener actionPaste = new SampleActionListener(table, &quot;Paste&quot;);
+
+        // キーの登録
+        table.getInputMap().put(CUT, &quot;Cut&quot;);                // 切り取り
+        table.getActionMap().put(&quot;Cut&quot;, actionCut);
+        table.getInputMap().put(COPY, &quot;Copy&quot;);              // コピー
+        table.getActionMap().put(&quot;Copy&quot;, actionCopy);
+        table.getInputMap().put(PASTE, &quot;Paste&quot;);            // 貼り付け
+        table.getActionMap().put(&quot;Paste&quot;, actionPaste);
+    }
+    
+    /**
+     * 右クリックメニュー初期化を行います。
+     * 
+     * @param table 右クリックを行うテーブル
+     */
+    private void initializeRightClickMenu(JTable table) {
+
+        // 右クリック用のメニューを定義
+        JMenuItem jmenuitem1, jmenuitem2, jmenuitem3;
+        jmenuitem1 = new JMenuItem(&quot;Cut    Ctrl+X&quot;);            // 切り取り
+        jmenuitem2 = new JMenuItem(&quot;Copy   Ctrl+C&quot;);            // コピー
+        jmenuitem3 = new JMenuItem(&quot;Paste  Ctrl+V&quot;);            // 貼り付け
+
+        // 右クリック用アクションリスナー生成（各メニューアイテム共通で使用）
+        SampleActionListener listener
+            = new SampleActionListener(table, jmenuitem1, jmenuitem2, jmenuitem3);
+
+        // 各メニュー選択時の処理
+        jmenuitem1.addActionListener(listener);
+        jmenuitem2.addActionListener(listener);
+        jmenuitem3.addActionListener(listener);
+        
+        // 右クリック時に表示するポップアップを定義
+        JPopupMenu jpopup = new JPopupMenu();
+        jpopup.add(jmenuitem1);             // Cut    Ctrl+X
+        jpopup.add(jmenuitem2);             // Copy   Ctrl+C
+        jpopup.add(jmenuitem3);             // Paste  Ctrl+V
+        
+        // マウスイベント用リスナー追加
+        table.addMouseListener(new SampleMouseListener(
+                table, jpopup));
+        // ポップアップをフレームに設定
+        this.add(jpopup);
+    }</pre>                                                                                       
+    </td>                                                                                       
+  </tr>                                                                                       
+  </tbody>                                                                                       
+</table>                                               
+</div>                                                                    
+<div class="space">＜Actionリスナー＞                                                                                       
+<table class="table_code" summary="code">                                                                                       
+  <tbody>                                                                                       
+  <tr>                                                                                       
+    <td>                                                                                       
+    <pre>public class SampleActionListener extends AbstractAction implements ActionListener {
+    
+    private JTable jTable;
+    
+    private JMenuItem jmenuitem1, jmenuitem2, jmenuitem3;
+    
+    private String command;
+
+    private Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+
+    /**
+     * コンストラクタ
+     *
+     * @param jTable コピー、ペーストを行うテーブル
+     * @param jmenuitem1 １つ目のメニューアイテム
+     * @param jmenuitem2 ２つ目のメニューアイテム
+     * @param jmenuitem3 ３つ目のメニューアイテム
+     */
+    public SampleActionListener(JTable jTable,
+            JMenuItem jmenuitem1, JMenuItem jmenuitem2, JMenuItem jmenuitem3) {
+        this.jTable = jTable;
+        this.jmenuitem1 = jmenuitem1;
+        this.jmenuitem2 = jmenuitem2;
+        this.jmenuitem3 = jmenuitem3;
+        this.command = &quot;&quot;;
+    }
+
+    /**
+     * コンストラクタ
+     *
+     * @param jTable コピー、ペーストを行うテーブル
+     * @param command コマンド文字列
+     */
+    public SampleActionListener(JTable jTable, String command) {
+        this.jTable = jTable;
+        this.jmenuitem1 = null;
+        this.jmenuitem2 = null;
+        this.jmenuitem3 = null;
+        this.command = command;
+    }
+    
+    /**
+     * アクション（右クリックからメニュー選択、またはショートカットキー）発生時の処理
+     * 
+     */
+    public void actionPerformed(ActionEvent e) {
+        
+        /** Cut **/
+        if(e.getSource() == jmenuitem1 || command.equals(&quot;Cut&quot;)) {
+            // カット処理
+            processCopy(jTable, true);
+        }
+        /** Copy **/
+        else if(e.getSource() == jmenuitem2 || command.equals(&quot;Copy&quot;)) {
+            // コピー処理
+            processCopy(jTable, false);
+            return;
+        }
+        /** Paste **/
+        else if(e.getSource() == jmenuitem3 || command.equals(&quot;Paste&quot;)) {
+            // ペースト処理
+            processPaste(jTable);
+        }
+        /** その他 **/
+        else {
+            // 未処理
+        }
+    }
+
+    /**
+     * 切り取り／コピー処理を行います。
+     * 
+     * @param jTable 操作するテーブル
+     * @param delete コピー元データを削除する場合はtrue、そうでない場合はfalse
+     */
+    private void processCopy(JTable jTable, boolean delete) {
+
+        StringBuffer buffer = new StringBuffer();           // コピーするデータ用バッファ
+        int numCols = jTable.getSelectedColumnCount();      // 選択されている列数
+        int numRows = jTable.getSelectedRowCount();         // 選択されている行数
+        int[] rowsSelected = jTable.getSelectedRows();      // 選択されている行のインデックス
+        int[] colsSelected = jTable.getSelectedColumns();   // 選択されている列のインデックス
+        
+        /* セルからデータ取得 */
+        for(int i = 0; i &lt; numRows; i++) {
+            for(int j = 0; j &lt; numCols; j++) {
+                // １セルずつバッファにデータをコピー
+                buffer.append(jTable.getValueAt(rowsSelected[i], colsSelected[j]));
+                /** 削除指定あり **/
+                if(delete) {
+                    // コピーした箇所に&quot;&quot;を設定することにより、データ消去
+                    jTable.setValueAt(&quot;&quot;, rowsSelected[i], colsSelected[j]);
+                }
+                // １データ間毎にタブを挿入
+                if(j &lt; numCols-1) buffer.append(&quot;\t&quot;);
+            }
+            // 行が変わるとLFを挿入
+            buffer.append(&quot;\n&quot;);
+        }
+        
+        // 文字列としてバッファのデータをクリップボードに転送する
+        StringSelection ss = new StringSelection(buffer.toString());
+        clipboard.setContents(ss, ss);
+        
+        // JTableを再描画
+        jTable.repaint();
+    }
+    
+    /**
+     * ペースト処理を行います。   
+     * ※行、セル分割時にStringTokenizerを使用すると未入力のセルが飛ばされてしまうため、危険。 
+     *    
+     * @param jTable 操作するテーブル   
+     */   
+    private void processPaste(JTable jTable) {   
+           
+        String  rowStr;                                     // １行全体を連結した文字列   
+        int startRow = jTable.getSelectedRows()[0];         // 選択された先頭行のインデックス 
+        int startCol = jTable.getSelectedColumns()[0];      // 選択された先頭列のインデックス 
+        int endRow = jTable.getSelectedRows()[jTable.getSelectedRows().length-1];   
+                                                            // 選択された最終行のインデックス 
+        int endCol = jTable.getSelectedColumns()[jTable.getSelectedColumns().length-1];   
+                                                            // 選択された先頭列のインデックス 
+           
+        // クリップボードの内容を転送可能なオブジェクトとして取得する   
+        Transferable transferable = clipboard.getContents(jTable);   
+           
+        /** クリップボードにデータがあれば **/   
+        if(transferable != null) {   
+            try{   
+                // クリップボードのデータを文字列として取得   
+                String str = (String)transferable.getTransferData(DataFlavor.stringFlavor); 
+                   
+                /*----------*/   
+                /* １行分割 */   
+                /*----------*/   
+                // LFの位置を取得する   
+                ArrayList&lt;Integer&gt; listLf = new ArrayList&lt;Integer&gt;();   
+                for(int i = 0; i &lt; str.length(); i++) {   
+                    if(str.charAt(i) == '\n')   listLf.add(i);   
+                }   
+                // １行単位にする   
+                ArrayListt&lt;Stringt&gt; listLine = new ArrayList&lt;String&gt;();   
+                for(int i = 0, pos = 0; i &lt; listLf.size(); i++) {   
+                    listLine.add(str.substring(pos, listLf.get(i)));   
+                    pos = listLf.get(i) + 1;   
+                }   
+   
+                // 選択したセルよりも複写先セルの数が多い場合は、同じものを繰り返し貼り付ける   
+                for(int i = startRow; (i == startRow) || ((i + listLine.size() - 1) &lt;= endRow);
+                    i += listLine.size()) {   
+                       
+                    Iterator&lt;String&gt; iteratorLine = listLine.iterator();   
+                    for(int j = 0; iteratorLine.hasNext(); j++) {   
+                        // １行の文字列   
+                        rowStr = iteratorLine.next();   
+                           
+                        /*----------*/   
+                        /* セル分割 */   
+                        /*----------*/   
+                        // タブの位置を取得する   
+                        ArrayList&lt;Integer&gt; listTab = new ArrayList&lt;Integer&gt;();   
+                        for(int k = 0; k &lt; rowStr.length(); k++) {   
+                            if(rowStr.charAt(k) == '\t')    listTab.add(k);   
+                        }   
+                        // セル単位にする   
+                        ArrayList&lt;String&gt; listCell = new ArrayList&lt;String&gt;();   
+                        int pos = 0;   
+                        for(int k = 0; k &lt; listTab.size(); k++) {   
+                            listCell.add(rowStr.substring(pos, listTab.get(k)));   
+                            pos = listTab.get(k) + 1;   
+                        }   
+                        // 最後のセル   
+                        if(pos &lt;= (rowStr.length()-1)) {   
+                            listCell.add(rowStr.substring(pos, rowStr.length()));   
+                        }   
+                        else {   
+                            // 最後のセルが何も無い場合   
+                            listCell.add(&quot;&quot;);   
+                        }   
+                           
+                        // 選択したセルよりも複写先セルの数が多い場合は、
+                        // 同じものを繰り返し貼り付ける
+                        for(int x = startCol;
+                            (x == startCol) || ((x + listCell.size() - 1) &lt;= endCol); 
+                            x += listCell.size()) {   
+                               
+                            Iterator&lt;String&gt; iteratorCell = listCell.iterator();   
+                            for(int y = 0; iteratorCell.hasNext(); y++) {   
+                                // １セル分のデータを取得   
+                                String value = iteratorCell.next();   
+                                // 貼り付け対象セルがテーブルからはみ出していなければ   
+                                if(i + j &lt; jTable.getRowCount() &amp;&amp;   
+                                    x + y &lt; jTable.getColumnCount()) {   
+                                    // １セル分のデータを貼り付け   
+                                    jTable.setValueAt(value, i + j, x + y);   
+                                }   
+                            }   
+                        }   
+                    }   
+                }   
+            }   
+            catch(IOException e1){   
+                e1.printStackTrace();   
+            }   
+            catch(UnsupportedFlavorException e2){   
+                e2.printStackTrace();   
+            }   
+            catch(NullPointerException e3){   
+                e3.printStackTrace();   
+            }   
+            catch(Throwable t){   
+                t.printStackTrace();   
+            }   
+               
+            // JTableを再描画   
+            jTable.repaint();   
+        }   
+    }   
+}</pre>                   
+    </td>                   
+  </tr>                                                                                       
+  </tbody>                                                                                       
+</table>                                                                                       
+</div>                                               
+</td>                                                                                       
+</tr>                                                                            
+                                                                                           
+<tr>                                                                                           
+<td>                                                                                           
+<br>                                                                                           
+                                                                                           
+</td>                                                                                           
+</tr>                                                                                      
+</tbody>                                                                                      
+</table>                                                                                           
+<br>          
+<!-- Java Swing Tips Sample GUI サンプル -->                               
+<!-- ///// Google ///// -->                                      
+<script type="text/javascript"><!--               
+google_ad_client = "pub-4667966388895726";               
+/* 728x90, 作成済み 09/01/26 */               
+google_ad_slot = "1570626113";               
+google_ad_width = 728;               
+google_ad_height = 90;               
+google_language = 'ja';               
+//-->               
+</script>               
+<script type="text/javascript"               
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">               
+</script>               
+<!-- ///// Google ///// -->                                      
+</td>                           
+</tr>              
+</tbody>                           
+</table>                                                                                                   
+</body>                                                                                           
+                                                                                           
+</html>                                                                                           
